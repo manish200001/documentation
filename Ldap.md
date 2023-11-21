@@ -97,17 +97,32 @@ Prerequisites for setup
 ```
 sudo apt install podman
 ```
+### Output
 
-![](https://lh7-us.googleusercontent.com/A7ccl40CeeP95B0bTnrfpDlW5Kz60y-og2AysiFN4lTSYuH33jXW43HF8kflQt8KC_mWLXq9aQ6kyf27gYZwLa8YiytxOH1hWMeQleh8do-7eVSzh6YP42_IxlUnW1e0g-NrBg1M_adTY4sybHbcgk0)
+```
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+podman is already the newest version (4:4.6.2-0ubuntu22.04+obs81.12).
+The following packages were automatically installed and are no longer requi
+red:
+buildah containernetworking-plugins golang-github-containernetworking-plu gin-dnsname golang-github-containers-common
+golang-github-containers-image libflashrom1 libftdi1-2 libllvm13 libllvm1
+4 libostree-1-1
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 6 not upgraded.
+```
+
 
 **To check podman**
 
 ```
 which podman
 ```
-
-![](https://lh7-us.googleusercontent.com/R_Bs8dn01b7wB2trNM2eP2AvZhqhkK8wbagD2fq4jSIaoXvxyEJxAlisWC8ooptcz7aEBJ-mLWJVNvIfRzgoL3oNb9JR_C6kMsMZPcZ-Z4vnZNnLjeAywwym-VH5I1fczkRJfOEWqPaKECjrRnVizcc)
-
+### Output
+```
+/usr/bin/podman
+```
 
 # Install ldap-utils
 
@@ -116,10 +131,19 @@ which podman
 ```
 sudo apt install ldap-utils
 ```
+### Output
 
-![](https://lh7-us.googleusercontent.com/dwbeBtlWirTV6XqGzIfqgu4xhCWa6atAS9UZEK7B3SahX3boF5-_ckE7EmrAPx1TSpq-deRPtlC8Qbtq-Q0oxt6xYS6VHDEOr4C6aMrXIB2pyPZaGCdG9nU0u8j7uMvYeOF0CGkfjhXME29C0UFCP-Y)
-
-
+```
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+ldap-utils is already the newest version (2.5.16+dfsg-0ubuntu0.22.04.1). The following packages were automatically installed and are no longer required:
+buildah containernetworking-plugins golang-github-containernetworking-plugin-dnsname gol
+ang-github-containers-common
+golang-github-containers-image libflashrom1 libftdi1-2 libllvm13 libllvm14 libostree-1-1
+Use 'sudo apt autoremove' to remove them.
+O upgraded, 0 newly installed, 0 to remove and 6 not upgraded.
+```
 # Step 1
 
 **Create openldap server in podman**
@@ -145,9 +169,7 @@ podman run -dt --name openldap-container -p 3389:3389 -v /home/manish/ldap/qqq/g
 podman exec -it openldap-container /bin/bash
 ```
 
-![](https://lh7-us.googleusercontent.com/J9BQxpiHmQV2zqZv9euhWSlI5Xg-Vhy7hU4eQPw0RvWGFRfuGEQRGqIMIsbYW6zpetUG-eGiXGKBWPlwsaRYXzoa_qTlf-cHHADI7tcDHTvs85YJUOVmn13Bc7dB9YXHiXOt5O8ZHcvOvXF7Qize72A)
 
-**Your password is 1**
 
 **To check environment in the container**
 
@@ -155,7 +177,7 @@ podman exec -it openldap-container /bin/bash
 dsconf -D "cn=Directory Manager" ldap://localhost:3389 backend suffix list
 ```
 
-![](https://lh7-us.googleusercontent.com/3g5t5HxG4I7q6judEPg0siT_GqvHBwKWZogHQtZDtAHZ08Q6r31AbW0KejbXnCi9qHD6c8p13GXcYoMzR2T_vX57LDZ09QF94dVFYIB03XXFqC9Nh3LqgZs9KNKbd4a2yG7wrgPgMkjQta1r74clAeY)
+
 
 **If no backend found**
 
@@ -165,7 +187,7 @@ dsconf -D "cn=Directory Manager" ldap://localhost:3389 backend suffix list
 dsconf -D "cn=Directory Manager" ldap://localhost:3389 backend create --suffix "dc=finoptaplus,dc=com" --be-name "finoptaplus"
 ```
 
-![](https://lh7-us.googleusercontent.com/74gKjV8vGP8HbkLB0IH1jEZ_U6dgI2qk1gss-hM7WyyxMAV0ltCu5h_Z1WezwawVKlo2iB-A99H_32hKfT2Q0noN1CBMhy6Eqg-SJ3OBu3AD3R7Z4o9Lt_h4Ta4gZqafSRfP7pMP7YnG_l_FVk8cHE8)
+
 
 **To exit from container**
 
@@ -173,7 +195,7 @@ dsconf -D "cn=Directory Manager" ldap://localhost:3389 backend create --suffix "
 exit
 ```
 
-![](https://lh7-us.googleusercontent.com/lDn6k6ofKte7pkD2ygQL78T77P7bQjPmfLldcFiSq44n5CjFou3GEsi-YzQTZmWymzTgvLGwLMGCv2Y1Xh8bF7HBooKAaRXUrIjPDvEAtComhx676mhExkMCLe4gz9h8b4zdc4PO6-ymP488nZ4VKoQ)
+
 
 
 # Step 2
@@ -189,8 +211,6 @@ When you add a file, If you saw any error like syntax error or object not found 
 ```
 vim 1_Add_Directory.ldif
 ```
-
-![](https://lh7-us.googleusercontent.com/4ArPiRvLfsjWrb-mXNpBndbaTQmh3QE3wwG_t3XAURo7SAfyFYW0XuCr7aK4DSeouzzjCmHHnBLPXk71JCiOao_Ubxk3lZe3M_CHXFTo1n8zbvnfHgnfxwlsvioWaPmiIBuXHvvU7XCV8rsuq5hlbeQ)
 
 ```
 version: 1
@@ -579,7 +599,6 @@ statusCode: Dormant
 ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 1_Add_Directory.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/gYRoWnO6s8qvTZ6wqo7Z7vXlOm_JO6vv05Of5_N5VIlXkHdRJrL8AXjSCnrbdGC0IX3yXaO3CBPgpcmIQLIdqgdJSkGU8vNjVF8MMEaCMIEmmnnL-bUInMjYXyW527G_d44QkO2oIozmeXpjZbeOV5E)
 
 **Note**
 
@@ -591,7 +610,7 @@ When you adding file, If you saw any error like syntax error or object not found
 vim 2_Add_common_attribues.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/3pwPYTAxQKLmAvZrfSU3QetEyQUz01ms1ZuC3MzlkcAVJw_DKQoZTj8lrNvDnqSu_tarzX8WUuMhrVO9vkQsQcfprM0KO0XK9A6aq5zCWtbFN7rbLFCJptNe5DV1J30IylkbwJ_aAUuy560_QS8SWKg)
+
 
 ```
 dn: cn=schema
@@ -756,7 +775,7 @@ attributetypes: ( createdBy-oid NAME 'createdBy' DESC 'createdBy,string' SYNTAX 
 ```
 ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 2_Add_common_attribues.ldif
 ```
-![](https://lh7-us.googleusercontent.com/Kf1_RV4r0wzbNi6IZWq5T3Wq0rRyiPh5WaZyCjEfpiQ2PaurBFKG_TVnEYER_7-m50KQQr6xIsYRbiooGyDseOCn-qOfCfRKlTXxk6cstXZ64SB9DigLdu9sPGcTCmsnIflQVX1iIixJj08hXbyRi1s)
+
 
 **To create 3\_Add\_object\_class.ldif on ldap server**
 
@@ -764,7 +783,7 @@ ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 2_Add_
 vim 3_Add_object_class.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/ijJ4c0xCeN4Ub50bDlvADkxMsfNoU5aqpZYXA9DNalvWkntmpAPmdf-_iUiwhWcb2jopGKUokOokfMv24JD80FZewws6hwUIim1xns40Q5uQkfGTtgCsoW_9HCi5jZVsjIavU1HubZFBbbrSE4dAYG0)
+
 
 ```
 dn: cn=schema
@@ -815,14 +834,13 @@ dnanextvalue: 1
 ```
 ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 3_Add_object_class.ldif
 ```
-![](https://lh7-us.googleusercontent.com/U5oDGP9PlZZt3d4tWXJjOIRpTv8ZOsuOoylA5frXeUrzD4HBR7MpnbbVE1q6yttxXU7EIhq3OKfxWadJs0XeGlmFoCsw2Z1MleHr2FBTTt_P2VlNvLohex0-QyBhldbkdO0PJO9IDAGMLq5U6OZ2H8w)
+
 
 **To create 4\_error\_Code.ldif**
 ```
 vim 4_error_Code.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/dJhO1k5JhBMxq63ksYf5hyeF47ktG-QSJtJB7TXCMeguZF00cE4IiAM_USmvw360bEcG98IJZHI8EjWdy1ZwlNWm3IHj6RzUqph3kh1OH3iUBQhPdrsMwZzlDLMwX18jv4aCoYn9UeycY1WFf0D56p0)
 
 ```
 dn: cn=schema
@@ -886,7 +904,7 @@ objectclasses: ( errorcodeptaplus-oid NAME 'errorcodeptaplus' SUP top STRUCTURAL
 dapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 4_error_Code.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/4OMSZRaxUW_u7m5V7UQmig2kI3doFh7vjBPCL1iEtX1t47OdfodWeQ8fCswBi7Vdzoq6LDP7kzESYM9EBkZUPm6gCFBBGAwISLPwhb6Om7supp4_sGoe2AuPq06IzqnqBlzOjE4fxmX2iF2_4EDiEAQ)
+
 
 **To create 5\_add\_account.ldif**
 
@@ -894,7 +912,6 @@ dapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 4_error
 vim 5_add_account.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/sFjVxw0fQwi10VA14gdjl2WAFQOEJgSl6yiKr1ZbcSeh9uEF6ILQf9j5DKu7egqeZrVCZFWQjoeIUSNPIJf5yz4JJe4XtzbCtDVn4SHn-u2qqj3XbxEDxd9PMCrbiRikd94I4cySeiJzrUwy2laEvbU)
 
 ```
 #accounts
@@ -1034,14 +1051,13 @@ dnanextvalue: 1
 ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 5_add_account.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/YQS7E0XL0ce0Lr2SVPqL0KWe2cv0CqprstlxknOIh7olLnFw5WsmLxCsff807RGGeshRnYCxlrjCRE3yiNavNHHt17ql1d6O0SaemOvQhTqZuihESruZqopRdKrZ_dBmby7iXAzI0Gfp0Kr6AsPfsLM)
+
 
 **To create 6\_add\_bussiness\_type\_code.ldif**
 ```
 vim 6_add_bussiness_type_code.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/uSYgT0gdCj4rok1ItujlAN60ZjbYWjR-l8sfuYCx1JdqathCRovm6RcFCnjcs7z_YTR5AlgQZBZAVuPr3LGqVQyl9QdgGHraLLnO3P14ApzpC8HeOsPt_pG5V619I_ig9hIL2IpVi7xLKbzYocYhyyw)
 
 ```
 version: 1
@@ -3008,7 +3024,6 @@ mCategory: Champagne producers
 ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 6_add_bussiness_type_code.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/M54eSnlV1QUAZzfT_lUgTID-__tjGpKKX2vET96g4xH19aprCl7VmyqIYMSI1mlm52WLqzAPwMHNCyWid2tl8MYHp25K6tJ0EmL2zryI-EzETHBnXwKn2zdYYROzU0dl14hF2_jzdvKA-x7yTRfvjAE)
 
 **To create 7\_add\_master\_for\_error\_hold\_restrictions.ldif**
 
@@ -3016,7 +3031,6 @@ ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 6_add_
 vim 7_add_master_for_error_hold_restrictions.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/ITG9N-gguKsVXr5-_6056kQsLHkC3Q6MCEq_A_Il3268DtXaRvslV5JyfDfYb1wwIOIwUmviU8yFy3N_VOQo7Vpzy6ymYZCKiaHaJlyAIWqssNRVBvDSsgw0CmCfMPKL6TaexIv1eM24MHMwBXNSt5o)
 
 ```
 # Error master
@@ -3115,15 +3129,12 @@ dnanextvalue: 1
 ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 7_add_master_for_error_hold_restrictions.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/G423Sw3VnRBMf95DMl9FqDJA-hB8cptkotRsNx89GTjiZSXHoE0LuoIK59_TB0dW7X90tgffQ4wa3_q2iqv23NuCcIHPPZPMbwpRxRwTqK2dzFXE5aCBIxKhgUkIzthB4NP_XtsFikv5CBB1dKOcSxo)
-
 **To create 8\_add\_partners.ldif**
 
 ```
 vim 8_add_partners.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/9L9eZTahivBvnLoeJOwwdQgzh9dnTwVrWlT9RGtD-aL299I2Mm_cYiZivhF3tQjNmlAcaXuFosjMQ1dketpSrZlvWuK4bx57dp9KHDnBXs0QfJ5rtxXN39d7-1ZfzM04cuMR2boDHolYxG9iKaQ_sek)
 
 ```
 #partners
@@ -3305,7 +3316,7 @@ dnanextvalue: 1
 ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 8_add_partners.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/yurjQwWjXe8fgCuzeWMQr1I8s4sErCFf4UzOn-Fv1qdS1mvR7_UALFgzAcfhAQ6XASlrQ8mgQFqFBsLgadxF72syvlzIuswhVvcLxfiZLnCKgDSde026cJPp1Lwtyw0-sQ6Kxvf3JpVVmcBhAHaU4ts)
+
 
 **To create 9\_status.ldif**
 
@@ -3313,7 +3324,6 @@ ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 8_add_
 vim 9_status.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/mrms-DuVlMdFwMFeO7iq8vHXYtrFxxiswvqxtSt_E6BfPnm0NU1CwcX7a1fRmO-y_G1ubfJsBgE4lhYXD-QOr-F9i518i_m6pTN0SZllIZtdHkO7MzdCVBrBGN41sy5XCQIdgbCJfWVolag8J8tGJ_I)
 
 
 ```
@@ -3340,7 +3350,7 @@ objectclasses: ( statusMaster-oid NAME 'statusMaster' SUP top STRUCTURAL MUST (i
 ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 9_status.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/16gOBtYRK9c_GwDzDW4Iw5EF2MfFZWw8E8QS2WQVeVW2M3lmCG9xxKZLf1Hm6VqD0LzYBstkImnipNLQNDw-eruJIYizlrNuniBgZD749xItPURuv84PTgB8lEApJDVB8GS9qXbodZLzamM4JOm6xeg)
+
 
 **To create 10\_Add\_Business\_types.ldif**
 
@@ -3348,7 +3358,7 @@ ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 9_stat
 vim 10_Add_Business_types.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/8SU_Sg99EhZxep6-ewXFndpluncrkzra_e4lYdbgB4kL49fXZiT20kKk9CSuJ7MNO60daZOxmFVtobvixvi_picDITpRB7XxmqbNgLI9ZB75LdduT9qYEtyw6kqL04VDMSe-ziEQZtwDmV7YC7kmL0M)
+
 
 ```
 #business type
@@ -3389,7 +3399,7 @@ dnanextvalue: 1
 lldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 10_Add_Business_types.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/a9ZqnW2lP83QvmPSRtXnPMJomnn5L6Wh1d-2Lf5M2MSUiV9wKgcsEahdvrqIAUFhx385LFMraF42SE0yOiGgs-PkZZeRS4m2TY07APouH3SnV0pLlXPc57IWS55hQb6bAuSQQRpEvbQwD75pT0GCqwk)
+
 
 **To create 11\_Add\_Merchants.ldif**
 
@@ -3397,7 +3407,7 @@ lldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 10_Ad
 vim 11_Add_Merchants.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/jL0AwDutJrGbJ4PLoQqvDMyrtCjTXr1CSxQKx2yn1L4PgWfa02Yyq1n5u-ediAucl3fUrMYS9pb_NoaLqZeGGPVABvM-dx32V-35ihQQI4Zus7T4q7Zg7sZZ4QKlsuHTUZ6tP6SLUOOJ5__lh6zV7-0)
+
 
 ```
 #merchant
@@ -3608,7 +3618,7 @@ dnanextvalue: 1
 ```
 ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 11_Add_Merchants.ldif
 ```
-![](https://lh7-us.googleusercontent.com/HVWaQKGRygk3WaZA0pPbWdr-HQOK1JM_0Tj2cBq_sbb5ayVuyeAxhimkWeV5roIQdz_nohHjpAuAgNeVZBCF640VlIjm9EEw9qd8ETgNImf6Dvul07GQw5-_GhmPWmA5KOfeoge68VkTM3yiDDL2V3E)
+
 
 **To create 12\_Add\_prapluserror\_code.ldif**
 
@@ -3616,7 +3626,6 @@ ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 11_Add
 vim 12_Add_prapluserror_code.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/meqAvEur7IcAXXnPrJLSjuI-ISPEYIDnSItqjecFe5qMeU4N2VfhDU2_Mm8np4eVYf1jxl6KOTXtunpRSSWmkvt2JA1m6atB_FbKUr3jRfOYqzOty0OJ8ndlmoPT6N3bG3u9GjGQ1Hmn9IPtxBe6gY8)
 
 ```
 version: 1
@@ -4039,7 +4048,7 @@ TroubleshootMessage: null
 ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 12_Add_prapluserror_code.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/mCSOYI2ToNVoY9LHHPlZ9et3sxIlB4hY_lKeTRMHLl17CrgZlYqfT92sKRmlA8Gc83Pcqdt1yrEXqErQHFjGO1ckXgfStfaK1n8WkRaBXvnciR62TI0Zm3Ff0IppqZyMFrltl6E7n8gv3W1QOy4GHcI)
+
 
 **To create 13\_Add\_transaction\_Groups\_And\_Transaction\_Types.ldif**
 
@@ -4047,7 +4056,6 @@ ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 12_Add
 vim 13_Add_transaction_Groups_And_Transaction_Types.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/mgDGZqEEXdnveMgj4cQsGTr-_u27Exv_eQdJpehFCS0r01_0uAQ9P_Gj3LUoFpbqB3N4-v-2YpcDfS5_7pwZteknB9TzxZJZFqsc4fVSRN2VJOMSzSBtoCWm2enOSZvRBsIppeSqUEwm--kSJ5JoU9s)
 
 ```
 # 4.transaction Group
@@ -4116,7 +4124,6 @@ dnanextvalue: 1
 ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 13_Add_transaction_Groups_And_Transaction_Types.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/vdl1mSFPCtVVBMhqe6FJvXPcDJVpm3lOr0F3gCif9wUY8v6IILvYA6WfNyn9nQUqbmDUmGZUIcW00IahO_c9i5KBtQOlWqo2Hbc_wiZj1lL8TPcneLla_6lkPcrhm5GFhYOvZtSo_IKwVqwNq86ZlqU)
 
 **To create 14\_Add\_banks.ldif**
 
@@ -4124,7 +4131,6 @@ ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 13_Add
 vim 14_Add_banks.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/DJFEGpJ-yQl9vE48hlxfiUAVRbaa71sNMCEUCuKlyOWJiL5b0Z_q8BWLm85rFAKBPeI05HQSwHMFlGEDiqeEevAkAgdFy-KmD4SNtrDdgdx4UMiSbK7HnfeTZugovDTbcTW8uteI44U6AEvPAdWNwBg)
 
 ```
 # banks
@@ -4277,7 +4283,6 @@ dnanextvalue: 1
 ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 14_Add_banks.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/6GYB-GudxToVD6ore3zzcc55ltAiOyogtnvtHA-GR-pY5v1RtXzUflhZA_yC9PWmcaJ6cKg_W5Rcv88sOYA5nEosYO-YnFoWFjHj43OxzZ79gZPxIgbLbvglkKvmPcnay9AhciX7Jpw5Np_v6YePfaA)
 
 **To create 15\_Add\_glsfinal.ldif**
 
@@ -4285,7 +4290,6 @@ ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 14_Add
 vim 15_Add_glsfinal.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/PWZXffPJWlgS22OipxFF2R2Y5_NJ881xQwmXUvLQ1uaofUuVi3V6iNtoKcU4VfZGftD_pQuPbrvtdb-sxc___TqPUsvPxjy3TUOjP_w2qt_eGwFAf2xU_dBph9GQ5dDRf3DX6XrMOoowABinu64rxMo)
 
 ```
 dn: cn=schema
@@ -4488,7 +4492,6 @@ dnanextvalue: 1
 ```
 ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 15_Add_glsfinal.ldif
 ```
-![](https://lh7-us.googleusercontent.com/3v9V7smLqGW4cwV6Yx4wvmRRI3dk2cLBGxtXePP7fxav9KnRwukQuYMIRnd0cfHR7DE_ECIsoiyYFFM_Yn88vlF_zmNwjUFqiiNFEHcD9Qzq2b4lfcpT0vmfw1DjuNGh-LJchuF4p9AfZJ7ee2gw0qo)
 
 **To create 16\_Add\_status.ldif**
 
@@ -4496,7 +4499,7 @@ ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 15_Add
 vim 16_Add_status.ldif
 ```
 
-![](https://lh7-us.googleusercontent.com/J8VUpPcY1o1Ljh2bQ4Da_8F8NgJzXgjB7Vra8SpzO83dgRGOSjySgaT86c7rxq0krhUhK34Wyry8c2uJb0VOhwdACSkpqeTsmGWg0OWWkfMV1YC1Hq13laubRZsbb0Xt2Ak2XtqviwJo32A_6MsBZU8)
+
 
 ```
 #state
@@ -4599,12 +4602,11 @@ Click link below and download file
 ```
 cd Download/
 ```
-![](https://lh7-us.googleusercontent.com/yjMAZZJpxqC_09PqCn_p9mXGjp4nozmXFHpc2yPr6GiJY9nBYt_7sCE62KAGg2AP-Xb0AqMPwYuW0NN58GqsUZtH3fBIEM2XLpjt4n4df0VNopv5AE6v03SZi1LzWqcitlMYyReBoYN5pEKtbPpVZaY)
+
 
 ```
 tar -zxvf ApacheDirectoryStudio-2.0.0.v20210717-M17-linux.gtk.x86_64.tar.gz
 ```
-![](https://lh7-us.googleusercontent.com/V0ZudBJ30D8gunjGGGRlrWHnA5wocF1UxjLGCWlSQhpc-El3T3pgf4GZk9M_rms3rU2rXMjcjBnp57NwFEk1777LGmF0EAJ9s5-EBSUJ3oB3PkylBsR1MXhvMi6r8cGmOg17uZzxzkZ2VoGdPslnXvo)
 
 ```
 sudo mv ApacheDirectoryStudio-* /opt/
@@ -4615,8 +4617,19 @@ sudo ln -s /opt/ApacheDirectoryStudio*/ApacheDirectoryStudio /usr/local/bin/Apac
 ```
 sudo apt-get install openjdk-11-jre
 ```
+### Output
+```
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+openjdk-11-jre is already the newest version (11.0.20.1+1-0ubuntu1~22.04).
+openjdk-11-jre set to manually installed.
+The following packages were automatically installed and are no longer required:
+buildah containernetworking-plugins golang-github-containernetworking-plugin-dnsname golang-github-cont golang-github-containers-image libflashrom1 libftdi1-2 libllvm13 libllvm14 libostree-1-1
+Use 'sudo apt autoremove' to remove them.
+upgraded, 0 newly installed, 0 to remove and 7 not upgraded.
+```
 
-![](https://lh7-us.googleusercontent.com/s6VqkN5xYlL35n5xxxIBWQF_Kz5rre_RPIeoo6G-FFTTG6-xdE4eZ3Gi5gEEFeHdobh01bxQDkJJiGiXGRTqHc7Y9FKodUZ6juumDmfuEMh3p-pcrQh2l8LNUHN8o4iSmxzH4AUeYqUwsbPxp6kJYAQ)
 
 ```
 cd ApacheDirectoryStudio/
@@ -4626,7 +4639,6 @@ cd ApacheDirectoryStudio/
 ./ApacheDirectoryStudio
 ```
 
-![](https://lh7-us.googleusercontent.com/OoTbGSS3Lt9tRNJz08YMmlSsUrXscHaVixs5VAog-NX8KySHZ646kMSyDTTyncOXsicoUpX0aZXphZLdHBnCzu6CT1pfcuRIuFgY57yHjPyMzJ5IuStik-p-6HNbUydTpQinPFWouJkxFUxrvDfYg_0)
 
 Now start your apache directory studio
 
