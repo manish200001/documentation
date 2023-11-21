@@ -153,16 +153,25 @@ O upgraded, 0 newly installed, 0 to remove and 6 not upgraded.
 ```
 pwd
 ```
-![](https://lh7-us.googleusercontent.com/ayq-BaNyVutRllh6qpeSWqm2LWYmOimNGIv8PTZ729aUZ_vlkJg4oFbpZzHaD_wICb1wiL5r1dW17aGZK20oUbMS5Aa1dnonDEOSibez98GWUL0Inu2UjPvJe24hedxlF5oMTlJsWeeis_DM8bq31FI)
+### Output
+```
+/home/manish/ldap/qqq/git
+```
 
 **To create container for server**
 
 ```
 podman run -dt --name openldap-container -p 3389:3389 -v /home/manish/ldap/qqq/git:/data -e DS_SUFFIX=dc=finoptaplus,dc=com -e DS_DM_PASSWORD=1 quay.io/389ds/dirsrv
 ```
-
-![](https://lh7-us.googleusercontent.com/tXgKG6P8J5PAJu6hNpSO9huhsyOfHeFVIsodKwl-Chbhxge89IsWyxmBoDEYy09GQcGZ7P7cVAWLKYW6gOmJbiioS8GkPCRbYJwl0xC8EtOVreuqmN8E3VuqvS0P34hAI6yiujf_AC9Kt7Xyj8ke-iM)
-
+### Output
+```
+Trying to pull quay.io/389ds/dirsrv:latest...
+Getting image source signatures
+Copying blob fbec38587578 done
+Copying blob 2b24f0beac85 done Copying config 3005286803 done
+Writing manifest to image destination
+f3406aec9f4d64bcc7f3eb8fbf740daf8b79656df2ce51a334712ebd01745bae
+```
 **To enter container**
 
 ```
