@@ -81,6 +81,14 @@ Podman is an open-source container management tool that allows users to manage c
 Apache Directory Studio is an open-source, cross-platform LDAP (Lightweight Directory Access Protocol) client and development toolset that is part of the Apache Directory project. It provides a set of tools and plugins to work with LDAP directories, making it easier for developers and administrators to interact with and manage LDAP servers.
 
 
+# Environment Details
+**OS Version:** Ubuntu 22.04.3 LTS
+**Podman Version:** 4.6.2
+**Java Version:** 11.0.20.1
+**Apache Directory Version:** 2.0.0-M17
+
+
+
 # Setup Server on Podman
 
 Prerequisites for setup
@@ -155,13 +163,20 @@ pwd
 ```
 ### Output
 ```
-/home/manish/ldap/qqq/git
+/home/manish/ldap
+```
+**To create folder**
+```
+mkdir ldap
+```
+```
+cd ldap
 ```
 
 **To create container for server**
 
 ```
-podman run -dt --name openldap-container -p 3389:3389 -v /home/manish/ldap/qqq/git:/data -e DS_SUFFIX=dc=finoptaplus,dc=com -e DS_DM_PASSWORD=1 quay.io/389ds/dirsrv
+podman run -dt --name openldap-container -p 3389:3389 -v /home/manish/ldap:/data -e DS_SUFFIX=dc=finoptaplus,dc=com -e DS_DM_PASSWORD=1 quay.io/389ds/dirsrv
 ```
 ### Output
 ```
@@ -214,7 +229,7 @@ exit
 When you add a file, If you saw any error like syntax error or object not found its not an error because all the files depend on each other.
 
 **Add ldif files** 
-
+**Add all the in ldap folder**
 **To create 1\_Add\_Directory.ldif**
 
 ```
@@ -910,7 +925,7 @@ objectclasses: ( errorcodeptaplus-oid NAME 'errorcodeptaplus' SUP top STRUCTURAL
 ```
 **To add 4\_error\_Code.ldif on ldap server**
 ```
-dapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 4_error_Code.ldif
+ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 4_error_Code.ldif
 ```
 
 
@@ -3405,7 +3420,7 @@ dnanextvalue: 1
 **To add 10\_Add\_Business\_types.ldif on ldap server**
 
 ```
-lldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 10_Add_Business_types.ldif
+ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 10_Add_Business_types.ldif
 ```
 
 
