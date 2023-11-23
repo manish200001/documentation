@@ -83,8 +83,11 @@ Apache Directory Studio is an open-source, cross-platform LDAP (Lightweight Dire
 
 # Environment Details
 **OS Version:** Ubuntu 22.04.3 LTS
+
 **Podman Version:** 4.6.2
+
 **Java Version:** 11.0.20.1
+
 **Apache Directory Version:** 2.0.0-M17
 
 
