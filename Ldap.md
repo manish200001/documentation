@@ -108,6 +108,17 @@ Prerequisites for setup
 ```
 sudo apt install podman
 ```
+
+
+**sudo:** This stands for "SuperUser DO" and is a command that allows a permitted user to execute a command as the superuser (root) or another user, as specified by the security policy.
+
+**apt:** This is the package management command-line tool used on Debian and Ubuntu-based systems. It's used for handling packages – searching, installing, updating, and removing them.
+
+**install:** This is the sub-command used with apt to instruct it to install the specified package.
+
+**podman:** This is the name of the package (in this case, a container management tool similar to Docker) that you want to install.
+
+
 ### Output
 
 ```
@@ -130,6 +141,12 @@ Use 'sudo apt autoremove' to remove them.
 ```
 which podman
 ```
+**which:** This command is used to locate the executable associated with a given command in your system. It helps you find the absolute path of the executable.
+
+**podman:** This is the command or executable for Podman, the container management tool.
+
+
+
 ### Output
 ```
 /usr/bin/podman
@@ -142,6 +159,16 @@ which podman
 ```
 sudo apt install ldap-utils
 ```
+**sudo:** This is a command used in Unix-like operating systems to run programs with the security privileges of another user, typically the superuser (or root). It stands for "superuser do."
+
+**apt:** This is the package management command-line tool used in Debian-based systems (such as Ubuntu) to handle package installation, removal, and updates.
+
+**install:** This is the action you're instructing apt to perform, indicating that you want to install a package.
+
+**ldap-utils:** This is the name of the package you want to install. In this case, it's "ldap-utils," which includes utilities for interacting with LDAP (Lightweight Directory Access Protocol) servers.
+
+
+
 ### Output
 
 ```
@@ -164,6 +191,7 @@ O upgraded, 0 newly installed, 0 to remove and 6 not upgraded.
 ```
 pwd
 ```
+**pwd** This is command stands for "print working directory." When you run pwd in a terminal or command prompt, it displays the current directory or the full path to the current working directory on your file system. 
 ### Output
 ```
 /home/manish/ldap
@@ -172,15 +200,45 @@ pwd
 ```
 mkdir ldap
 ```
+**mkdir:** This is a command used in Unix-like operating systems to create directories (folders).
+
+**ldap:** This is the argument passed to the mkdir command, specifying the name of the directory you want to create. In this case, it's "ldap."
+
 ```
 cd ldap
 ```
+**cd:** This is the command used to change the current working directory.
+
+**ldap:** This is the argument passed to the cd command, specifying the directory you want to change into. In this case, it's "ldap."
+
+
 
 **To create container for server**
 
 ```
 podman run -dt --name openldap-container -p 3389:3389 -v /home/manish/ldap:/data -e DS_SUFFIX=dc=finoptaplus,dc=com -e DS_DM_PASSWORD=1 quay.io/389ds/dirsrv
 ```
+**podman:** Podman is a container management tool, similar to Docker, but it does not require a daemon. It's used to run containers.
+
+**run:** This is the command used to start a new container.
+
+**-dt:** These are options passed to the podman run command:
+
+- **-d:** Run the container in the background (detached mode).
+- **-t:** Allocate a pseudo-TTY (terminal).
+**--name** openldap-container: Assigns the name "openldap-container" to the running container for easy reference.
+
+**-p 3389:3389:** Maps port 3389 on the host to port 3389 on the container. This is useful for accessing services inside the container from the host.
+
+**-v /home/manish/ldap:/data:** Mounts the directory "/home/manish/ldap" on the host to the "/data" directory inside the container. This is a volume mount, allowing data to be shared between the host and the container.
+
+**-e DS_SUFFIX=dc=finoptaplus,dc=com:** Sets an environment variable DS_SUFFIX with the value "dc=finoptaplus,dc=com" inside the container.
+
+**-e DS_DM_PASSWORD=1:** Sets an environment variable DS_DM_PASSWORD with the value "1" inside the container.
+
+**quay.io/389ds/dirsrv:** Specifies the container image to use. In this case, it's the 389 Directory Server image from Quay.io.
+
+
 ### Output
 ```
 Trying to pull quay.io/389ds/dirsrv:latest...
@@ -195,7 +253,17 @@ f3406aec9f4d64bcc7f3eb8fbf740daf8b79656df2ce51a334712ebd01745bae
 ```
 podman exec -it openldap-container /bin/bash
 ```
+**podman:** Podman is a container management tool, similar to Docker, used to run containers.
 
+**exec:** This is the command used to execute a command in a running container.
+
+**-it:** These are options passed to the podman exec command:
+
+ -**-i:** Keep STDIN open even if not attached.
+ -**-t:** Allocate a pseudo-TTY (terminal).
+**openldap-container:** This is the name of the container in which you want to execute a command.
+
+**/bin/bash:** This is the command you want to run inside the container. In this case, it's starting an interactive Bash shell (/bin/bash) inside the "openldap-container."
 
 
 **To check environment in the container**
@@ -203,8 +271,17 @@ podman exec -it openldap-container /bin/bash
 ```
 dsconf -D "cn=Directory Manager" ldap://localhost:3389 backend suffix list
 ```
+**dsconf:** This is a command-line utility for configuring and managing 389 Directory Server.
 
+**-D "cn=Directory Manager":** Specifies the bind DN (Distinguished Name) for authenticating to the Directory Server. In this case, it's set to "cn=Directory Manager."
 
+**ldap://localhost:3389:** Specifies the LDAP URL, including the hostname and port number, to connect to. In this case, it's connecting to the LDAP server on the local machine (localhost) using port 3389.
+
+**backend suffix list:** This is the specific dsconf subcommand and arguments:
+
+**backend:** Indicates that you are configuring a backend.
+**suffix:** Specifies that you are working with the suffix of the backend.
+**list:** Requests a list of suffixes for the backend.
 
 **If no backend found**
 
@@ -213,6 +290,17 @@ dsconf -D "cn=Directory Manager" ldap://localhost:3389 backend suffix list
 ```
 dsconf -D "cn=Directory Manager" ldap://localhost:3389 backend create --suffix "dc=finoptaplus,dc=com" --be-name "finoptaplus"
 ```
+**dsconf:** This is a command-line utility for configuring and managing 389 Directory Server.
+
+**-D "cn=Directory Manager":** Specifies the bind DN (Distinguished Name) for authenticating to the Directory Server. In this case, it's set to "cn=Directory Manager."
+
+**ldap://localhost:3389:** Specifies the LDAP URL, including the hostname and port number, to connect to. In this case, it's connecting to the LDAP server on the local machine (localhost) using port 3389.
+
+**backend create:** This is the specific dsconf subcommand to create a backend.
+
+**--suffix "dc=finoptaplus,dc=com":** Specifies the suffix DN for the new backend. In this case, it's "dc=finoptaplus,dc=com."
+
+**--be-name "finoptaplus":** Specifies the backend name as "finoptaplus."
 
 
 
@@ -221,7 +309,7 @@ dsconf -D "cn=Directory Manager" ldap://localhost:3389 backend create --suffix "
 ```
 exit
 ```
-
+**exit:** command is used to close the current shell or terminal session. When you run exit, it terminates the current shell, logging you out of the system or ending your current command-line session.
 
 
 
