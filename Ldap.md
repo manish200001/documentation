@@ -233,7 +233,7 @@ pwd
 **pwd** This is command stands for "print working directory." When you run pwd in a terminal or command prompt, it displays the current directory or the full path to the current working directory on your file system. 
 ### Output
 ```
-/home/manish/ldap
+/home/manish
 ```
 **To create folder**
 ```
