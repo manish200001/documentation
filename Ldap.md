@@ -11,6 +11,8 @@
 
 [Apache Directory Studio](#apache-directory-studio)
 
+[Environment Details](#environment-details)
+
 [Setup Server on Podman](#setup-server-on-podman)
 
 [Install podman](#install-podman)
