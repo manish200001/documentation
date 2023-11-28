@@ -81,7 +81,37 @@ Podman is an open-source container management tool that allows users to manage c
 Apache Directory Studio is an open-source, cross-platform LDAP (Lightweight Directory Access Protocol) client and development toolset that is part of the Apache Directory project. It provides a set of tools and plugins to work with LDAP directories, making it easier for developers and administrators to interact with and manage LDAP servers.
 
 
+
 # Environment Details
+## Minimum Requirements:
+**Podman:**
+
+- 2 physical CPU cores.
+
+- 2 GB of free memory.
+
+- 35 GB of storage space.
+
+**LDAP-utils:**
+
+- CPU cores: min. 1, recommended 2.
+  
+- Storage: 500MB of free space on disk.
+  
+- 0perating System: The connector can run on Windows or Linux. Windows is required if Kerberos authentication will be used.
+  
+- RAM: min. 2GB.
+
+**Apache Directory Studio:**
+
+- A recent Windows version.
+  
+- Java 11 or later, we recommend AdoptOpenJDK.
+
+
+
+## MY Environment Details
+
 **OS Version:** Ubuntu 22.04.3 LTS
 
 **Podman Version:** 4.6.2
@@ -89,6 +119,13 @@ Apache Directory Studio is an open-source, cross-platform LDAP (Lightweight Dire
 **Java Version:** 11.0.20.1
 
 **Apache Directory Version:** 2.0.0-M17
+
+**RAM:** 8GB
+
+**CPU:** AMD ATHLON SILVER
+
+**Storage:** 1 TB
+
 
 
 
@@ -326,6 +363,8 @@ When you add a file, If you saw any error like syntax error or object not found 
 ```
 vim 1_Add_Directory.ldif
 ```
+**vim** This command opens the file named "1_Add_Directory.ldif" in the Vim text editor.
+
 
 ```
 version: 1
@@ -713,11 +752,24 @@ statusCode: Dormant
 ```
 ldapadd -a -c -x -H ldap://localhost:3389 -D "cn=Directory Manager" -W -f 1_Add_Directory.ldif
 ```
+**ldapadd** ldapadd command is used to add entries to an LDAP directory.
+**-a:** This option stands for "append." It is used to add new entries to the LDAP directory.
 
+**-c:** This option stands for "continuous operation." It is typically used to continue past errors. If an entry fails to add, the process doesn't stop, and the command continues with the next entry.
+
+**-x:** This option specifies that simple authentication should be used instead of SASL (Simple Authentication and Security Layer). It's commonly used for basic username and password authentication.
+
+**-H ldap://localhost:3389:** This option specifies the LDAP URI, indicating the protocol (ldap) and the hostname with the port number (localhost:3389) of the LDAP server.
+
+**-D "cn=Directory Manager":** This option provides the DN (Distinguished Name) of the user performing the LDAP operation. In this case, it's "cn=Directory Manager."
+
+**-W:** This option prompts for the password of the user specified with the -D option. After entering the command, you'll be prompted to enter the password.
+
+**-f 1_Add_Directory.ldif:** This option specifies the file (1_Add_Directory.ldif) containing the LDIF data to be added to the LDAP directory.
 
 **Note**
 
-When you adding file, If you saw any error like syntax error or object not found its not a error because all the files depend on each other.
+When you adding file, If you saw any error like object not found its not a error because all the files depend on each other.
 
 **To create 2\_Add\_common\_attribues.ldif**
 
@@ -4717,21 +4769,62 @@ Click link below and download file
 ```
 cd Download/
 ```
+**cd:** Stands for "change directory," and it is used to navigate the file system.
 
+**Download/:** Specifies the directory to which you want to change. The trailing slash / is used to indicate that "Download" is a directory.
 
 ```
 tar -zxvf ApacheDirectoryStudio-2.0.0.v20210717-M17-linux.gtk.x86_64.tar.gz
 ```
+**tar:** The command-line tool for handling tarball files, which are collections of files and directories bundled together. It's often used in conjunction with compression tools like gzip.
+
+**-z:** Specifies that the input file is compressed with gzip.
+**-x:** Stands for "extract," which tells tar to extract the contents.
+**-v:** Stands for "verbose," which displays detailed information about the extraction process.
+**-f:** Specifies the name of the archive file to be processed.
+**ApacheDirectoryStudio-2.0.0.v20210717-M17-linux.gtk.x86_64.tar.gz:** This is the name of the tarball file you are extracting.
+
 
 ```
 sudo mv ApacheDirectoryStudio-* /opt/
 ```
+**sudo:** Stands for "superuser do." It is used to execute the command with elevated privileges. You might need administrative rights to move files into the /opt/ directory.
+
+**mv:** Stands for "move." This command is used to move files or directories.
+
+**ApacheDirectoryStudio-*:** This is a wildcard pattern that matches any file or directory whose name starts with "ApacheDirectoryStudio-." The asterisk * is a wildcard character that represents any sequence of characters.
+
+**/opt/:** This is the target directory where the files will be moved. The /opt/ directory is commonly used for installing additional software on Unix-like systems.
+
+
+
 ```
 sudo ln -s /opt/ApacheDirectoryStudio*/ApacheDirectoryStudio /usr/local/bin/ApacheDirectoryStudio
 ```
+**sudo:** Executes the following command with elevated privileges.
+
+**ln:** Stands for "link" and is used to create links between files.
+
+**-s:** Specifies that a symbolic link should be created. Symbolic links are references to another file or directory.
+
+**/opt/ApacheDirectoryStudio\*/ApacheDirectoryStudio:** The source directory or file. The wildcard * is used to match any version or timestamp in the file name. This points to the Apache Directory Studio executable.
+
+**/usr/local/bin/ApacheDirectoryStudio:** The destination of the symbolic link. This is the location where the symbolic link will be created.
+
 ```
 sudo apt-get install openjdk-11-jre
 ```
+**sudo:** Stands for "superuser do." It is used to execute the command with elevated privileges. You might be prompted to enter your password.
+
+**apt-get:** The package management command-line tool used on Debian-based systems.
+
+**install:** The install command for apt-get is used to install new packages.
+
+**openjdk-11-jre:** This is the name of the package you want to install. It represents the OpenJDK 11 Runtime Environment.
+
+
+
+
 ### Output
 ```
 Reading package lists... Done
@@ -4749,10 +4842,13 @@ upgraded, 0 newly installed, 0 to remove and 7 not upgraded.
 ```
 cd ApacheDirectoryStudio/
 ```
-
+**cd ApacheDirectoryStudio/:** command is used to change the current working directory to the "ApacheDirectoryStudio" directory. 
 ```
 ./ApacheDirectoryStudio
 ```
+**./:** The dot-slash (./) is a shorthand notation indicating the current directory.
+
+**ApacheDirectoryStudio:** This is the name of the executable or script you are trying 
 
 
 Now start your apache directory studio
