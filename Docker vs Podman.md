@@ -28,7 +28,7 @@
 
 # Containers and Virtual Machines
 
-- **Containers**
+**Containers**
 
   - A container is a lightweight, portable, and self-sufficient unit that can run applications and their dependencies. Containers package the application code, runtime, libraries, and other necessary components into a single unit. They run on a shared operating system kernel and isolate the application processes from each other and from the host system. Popular containerization platforms include Docker and container orchestration tools like Kubernetes.
 
@@ -55,7 +55,7 @@
 
 <!---->
 
-- **Virtual Machines (VMs)**
+**Virtual Machines (VMs)**
 
   - A virtual machine, on the other hand, emulates a complete operating system along with its kernel and runs on virtualized hardware. Each VM includes a full operating system, and a hypervisor (virtual machine monitor) manages the allocation of physical resources to each VM.
 
@@ -437,7 +437,7 @@
 
   - Docker Swarm and extensive tooling make it well-suited for orchestrating and managing microservices.
 
-**Community and Support**
+## Community and Support
 
 ### Podman
 
