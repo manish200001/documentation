@@ -142,6 +142,10 @@ Prerequisites for setup
 
 # Install podman
 
+```
+sudo apt update && sudo apt upgrade -y
+```
+
 **To install podman**
 
 ```
