@@ -145,6 +145,18 @@ Prerequisites for setup
 ```
 sudo apt update && sudo apt upgrade -y
 ```
+**sudo:** Run the command with administrative (root) privileges.
+
+**apt:** A package management tool used in Debian-based systems (such as Ubuntu) for installing, upgrading, and managing software packages.
+
+**update:** Refresh the list of available packages from the repositories.
+
+**&&:** A logical AND operator used in the command line. It ensures that the second command is executed only if the first one is successful.
+
+**upgrade:** Upgrade the installed packages to the latest available versions.
+
+**-y:** Automatically answer "yes" to prompts during the upgrade process.
+
 
 **To install podman**
 
