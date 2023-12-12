@@ -367,27 +367,26 @@
 
 ## Ease of Use
 
-#### Podman
+### Podman
 
 - **User-Friendly**
 
   - Known for its simplicity and user-friendly interface, making container management straightforward.
 
-#### Docker
+### Docker
 
 - **Established User Interface:** 
 
   - Docker provides a well-established user interface, and its commands are widely recognized.
 
-**Container Orchestration**
 
-#### Podman
+### Podman
 
 - **Limited Built-In Orchestration**
 
   - Supports basic orchestration but relies on external tools for complex scenarios.
 
-#### Docker
+### Docker
 
 - **Docker Swarm**
 
@@ -401,7 +400,7 @@
 
   - Focuses on simplicity and lightweight container management.
 
-## Docker
+### Docker
 
 - **Extensive Ecosystem** 
 
@@ -409,7 +408,7 @@
 
 ## Use Cases
 
-#### Podman
+### Podman
 
 - **Security-Focused Environments**
 
@@ -421,7 +420,7 @@
 
   - User-friendly interface makes it suitable for development and testing environments.
 
-#### Docker
+### Docker
 
 - **Large-Scale Deployments**
 
@@ -434,13 +433,13 @@
 
 ## Community and Support
 
-#### Podman
+### Podman
 
 - **Growing Community**
 
   - Podman's community is growing, with active development and support.
 
-#### Docker
+### Docker
 
 - **Large and Established Community**
 
