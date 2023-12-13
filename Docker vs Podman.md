@@ -21,7 +21,7 @@
 
 [Podman And Docker Security](#podman-and-docker-security)
 
-[Podman and Docker across various aspects](#podman-and-docker-across-various-aspects)
+[Comparison between Podman and Docker](#comparison-between-Podman-and-Docker)
 
 
 
