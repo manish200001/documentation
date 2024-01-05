@@ -131,7 +131,8 @@ chmod u+x script_1.sh
 
 
 
-Note:-
+**Note:-**
+
 The script will not produce any output when it is run because the content has been commented out. Comments are ignored by the Bash interpreter, so they will not be executed.
 
 
@@ -162,7 +163,7 @@ vim script_2.sh
 
 a=manish
 
-echo “my name is $a”
+echo "my name is $a"
 ```
 
 ```
@@ -180,7 +181,9 @@ chmod u+x script_2.sh
 
 
 ## Output:-
-
+```
+my name is manish
+```
 
 
 
@@ -217,9 +220,20 @@ chmod u+x script_3.sh
 ./script_3.sh
 ```
 
-
+```
+ls
+```
 
 ## Output:-
+```
+manish@manish:~/test1$ ./script_3.sh
+Enter the name of the directory you want to create:
+ravi
+manish@manish:~/test1$ ls
+ravi  script_2.sh  script_3.sh
+```
+
+
 
 
 # Basic Bash commands (echo, read, etc.)
@@ -288,12 +302,22 @@ cat script_4.sh
 chmod u+x script_4.sh
 ```
 
-
 ```
 ./script_4.sh
 ```
+```
+ls
+```
 
-
+## Output:-
+```
+manish@manish:~/test1$ ./script_4.sh
+Enter the name of the directory you want to create:
+kavi
+Directory 'kavi' created successfully.
+manish@manish:~/test1$ ls
+kavi  ravi  script_2.sh  script_3.sh  script_4.sh
+```
 
 
 # Looping and Branching in Bash
@@ -310,17 +334,16 @@ vim script_5.sh
 
 # Your password is 1234
 echo "Enter your password:"
+echo "Only write numeric password"
 read password
 
-while [ $password -ne 1234 ]; do
+while [[ $password -ne 1234 ]]; do
     echo "The password $password is incorrect."
-    echo "Enter the correct password:"
+    echo "Please enter the correct password:"
     read password
 done
 
 echo "Your password is correct."
-
-
 ```
 
 ```
@@ -338,6 +361,41 @@ chmod u+x script_5.sh
 
 
 ## Output:-
+```
+manish@manish:~/test1$ ./script_5.sh
+Enter your password:
+Only write numeric password
+qq
+The password qq is incorrect.
+Please enter the correct password:
+q
+The password q is incorrect.
+Please enter the correct password:
+w
+The password w is incorrect.
+Please enter the correct password:
+er
+The password er is incorrect.
+Please enter the correct password:
+t
+The password t is incorrect.
+Please enter the correct password:
+e
+The password e is incorrect.
+Please enter the correct password:
+g
+The password g is incorrect.
+Please enter the correct password:
+g123
+The password g123 is incorrect.
+Please enter the correct password:
+111111
+The password 111111 is incorrect.
+Please enter the correct password:
+1234
+Your password is correct.
+
+```
 
 
 ## For loop
@@ -378,9 +436,21 @@ chmod u+x script_6.sh
 ./script_6.sh
 ```
 
-
+```
+ls
+```
 
 ## Output:-
+```
+manish@manish:~/test1$ ./script_6.sh
+Created file: file1.txt
+Created file: file2.txt
+Created file: file3.txt
+Created file: file4.txt
+Created file: file5.txt
+manish@manish:~/test1$ ls
+file1.txt  file2.txt  file3.txt  file4.txt  file5.txt  kavi  ravi  script_2.sh  script_3.sh  script_4.sh  script_5.sh  script_6.sh
+```
 
 
 
@@ -462,3 +532,60 @@ chmod u+x script_7.sh
 ```
 ./script_7.sh
 ```
+## Output:-
+
+```
+manish@manish:~/test1$ ./script_7.sh
+This is a menu:
+Press 1. Check file and folder
+Press 2. Create file
+Press 3. Create folder
+Press 4. Update system
+1
+file1.txt  file2.txt  file3.txt  file4.txt  file5.txt  kavi  ravi  script_2.sh	script_3.sh  script_4.sh  script_5.sh  script_6.sh  script_7.sh
+manish@manish:~/test1$ ./script_7.sh
+This is a menu:
+Press 1. Check file and folder
+Press 2. Create file
+Press 3. Create folder
+Press 4. Update system
+2
+enter your file name
+a   
+a  file1.txt  file2.txt  file3.txt  file4.txt  file5.txt  kavi	ravi  script_2.sh  script_3.sh	script_4.sh  script_5.sh  script_6.sh  script_7.sh
+manish@manish:~/test1$ ./script_7.sh
+This is a menu:
+Press 1. Check file and folder
+Press 2. Create file
+Press 3. Create folder
+Press 4. Update system
+3
+enter your folder name
+folder1
+a	   file2.txt  file4.txt  folder1  ravi	       script_3.sh  script_5.sh  script_7.sh
+file1.txt  file3.txt  file5.txt  kavi	  script_2.sh  script_4.sh  script_6.sh
+manish@manish:~/test1$ ./script_7.sh
+This is a menu:
+Press 1. Check file and folder
+Press 2. Create file
+Press 3. Create folder
+Press 4. Update system
+4
+[sudo] password for manish: 
+Hit:1 https://dl.google.com/linux/chrome/deb stable InRelease
+Hit:2 http://in.archive.ubuntu.com/ubuntu jammy InRelease                                                                                            
+Get:3 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]                                               
+Hit:4 https://packages.microsoft.com/repos/code stable InRelease                                                       
+Get:5 http://in.archive.ubuntu.com/ubuntu jammy-updates InRelease [119 kB]                                             
+Hit:6 https://apt.postgresql.org/pub/repos/apt jammy-pgdg InRelease                                         
+Hit:7 http://in.archive.ubuntu.com/ubuntu jammy-backports InRelease                       
+Fetched 229 kB in 3s (72.6 kB/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+11 packages can be upgraded. Run 'apt list --upgradable' to see them.
+N: Skipping acquire of configured file 'main/binary-i386/Packages' as repository 'https://apt.postgresql.org/pub/repos/apt jammy-pgdg InRelease' doesn't support architecture 'i386'
+manish@manish:~/test1$ 
+```
+
+
