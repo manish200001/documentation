@@ -127,7 +127,7 @@ chmod u+x script_1.sh
 ./script_1.sh
 ```
 
-Output:-
+## Output:-
 
 
 
